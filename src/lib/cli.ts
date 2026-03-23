@@ -32,7 +32,7 @@ export function parseArgs(
 ): [string, string, string, ...string[]];
 export function parseArgs(minArgs: number, usage: string): string[];
 export function parseArgs(minArgs: number, usage: string): string[] {
-	const args = process.argv.slice(3);
+	const args = process.argv.slice(2);
 	if (args.length < minArgs) {
 		exitWithError(usage);
 	}
