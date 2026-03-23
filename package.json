@@ -2,6 +2,7 @@
 	"name": "sjis-tools",
 	"version": "1.0.0",
 	"description": "CLI for safely editing SJIS/CP932 files — designed for AI agents",
+	"type": "module",
 	"bin": {
 		"sjist": "./dist/cli.js"
 	},
@@ -9,7 +10,8 @@
 		"dist"
 	],
 	"scripts": {
-		"build": "rm -rf dist && bun build src/cli.ts --outdir dist --target node --format esm --sourcemap=external --external iconv-lite",
+		"build": "rm -rf dist && bun build src/cli.ts --outdir dist --target node --format esm --minify --external iconv-lite",
+		"prepublishOnly": "bun run build && bun test",
 		"typecheck": "tsc --noEmit",
 		"lint": "biome check .",
 		"format": "biome check --write --unsafe .",
@@ -28,6 +30,9 @@
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/yuu1111/sjis-tools.git"
+	},
+	"engines": {
+		"node": ">=18"
 	},
 	"dependencies": {
 		"iconv-lite": "^0.7.2"

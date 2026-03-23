@@ -2,9 +2,7 @@
  * @description SJIS/CP932ファイルのエンコーディング検証CLI
  */
 
-import * as fs from "node:fs";
-import * as path from "node:path";
-import { parseArgs } from "../lib/cli";
+import { parseArgs, resolvePath } from "../lib/cli";
 import { decodeCP932, encodeCP932, readFileAsBuffer } from "../lib/cp932";
 
 /**
@@ -25,13 +23,14 @@ interface CheckResult {
  * @returns 検証結果
  */
 function checkFile(filePath: string): CheckResult {
-	const absolutePath = path.resolve(filePath);
+	const absolutePath = resolvePath(filePath);
 
-	if (!fs.existsSync(absolutePath)) {
+	let buffer: Buffer;
+	try {
+		buffer = readFileAsBuffer(absolutePath);
+	} catch {
 		return { file: filePath, valid: false, error: "File not found" };
 	}
-
-	const buffer = readFileAsBuffer(absolutePath);
 
 	let content: string;
 	try {

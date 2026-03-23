@@ -2,10 +2,14 @@
  * @description SJIS/CP932ファイルの新規作成CLI
  */
 
-import * as fs from "node:fs";
-import * as path from "node:path";
 import * as readline from "node:readline";
-import { parseArgs, requireFileNotExists } from "../lib/cli";
+import {
+	ensureDir,
+	parseArgs,
+	removeFile,
+	requireFileNotExists,
+	resolvePath,
+} from "../lib/cli";
 import { createCP932File, isValidCP932, readFileAsBuffer } from "../lib/cp932";
 
 /**
@@ -36,7 +40,7 @@ export async function main(): Promise<void> {
 
 	const outputPath = requireFileNotExists(
 		args[0],
-		`File already exists: ${path.resolve(args[0])}\nUse sjis-replace for existing files`,
+		`File already exists: ${resolvePath(args[0])}\nUse sjis-replace for existing files`,
 	);
 
 	let content: string;
@@ -46,17 +50,14 @@ export async function main(): Promise<void> {
 		content = args[1].replace(/\\n/g, "\n").replace(/\\t/g, "\t");
 	}
 
-	const dir = path.dirname(outputPath);
-	if (!fs.existsSync(dir)) {
-		fs.mkdirSync(dir, { recursive: true });
-	}
+	ensureDir(outputPath);
 
 	createCP932File(outputPath, content, true);
 
 	const buffer = readFileAsBuffer(outputPath);
 	if (!isValidCP932(buffer)) {
 		console.error("Error: Created file is not valid CP932");
-		fs.unlinkSync(outputPath);
+		removeFile(outputPath);
 		process.exit(1);
 	}
 

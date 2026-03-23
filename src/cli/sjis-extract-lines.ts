@@ -2,13 +2,13 @@
  * @description SJIS/CP932ファイルから指定行範囲を抽出して新規ファイルを作成するCLI
  */
 
-import * as fs from "node:fs";
-import * as path from "node:path";
 import {
 	exitWithError,
 	parseArgs,
 	readFileWithCP932Warning,
+	removeFile,
 	requireFileExists,
+	resolvePath,
 } from "../lib/cli";
 import { decodeCP932, isValidCP932, writeBufferToFile } from "../lib/cp932";
 import {
@@ -29,7 +29,7 @@ export function main(): void {
 	);
 
 	const sourcePath = requireFileExists(args[0]);
-	const outputPath = path.resolve(args[1]);
+	const outputPath = resolvePath(args[1]);
 	const ranges: LineRange[] = parseLineRanges(args[2]);
 
 	console.log(`Source: ${sourcePath}`);
@@ -52,7 +52,7 @@ export function main(): void {
 	writeBufferToFile(outputPath, outputBuffer);
 
 	if (!isValidCP932(outputBuffer)) {
-		fs.unlinkSync(outputPath);
+		removeFile(outputPath);
 		exitWithError("Error: Output is not valid CP932");
 	}
 

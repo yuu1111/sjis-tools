@@ -70,6 +70,43 @@ export function requireFileNotExists(
 }
 
 /**
+ * @description パスを絶対パスに解決
+ * @param filePath - 解決するパス
+ * @returns 絶対パス
+ */
+export function resolvePath(filePath: string): string {
+	return path.resolve(filePath);
+}
+
+/**
+ * @description ディレクトリが存在しなければ再帰的に作成
+ * @param dirPath - 作成するディレクトリパス
+ */
+export function ensureDir(filePath: string): void {
+	const dir = path.dirname(filePath);
+	if (!fs.existsSync(dir)) {
+		fs.mkdirSync(dir, { recursive: true });
+	}
+}
+
+/**
+ * @description ファイルを削除
+ * @param filePath - 削除するファイルパス
+ */
+export function removeFile(filePath: string): void {
+	fs.unlinkSync(filePath);
+}
+
+/**
+ * @description ファイルをコピー
+ * @param src - コピー元パス
+ * @param dest - コピー先パス
+ */
+export function copyFile(src: string, dest: string): void {
+	fs.copyFileSync(src, dest);
+}
+
+/**
  * @description ファイルがCP932でない場合に警告を表示
  * @param buffer - 検証するバッファ
  */

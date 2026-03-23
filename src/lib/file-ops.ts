@@ -2,7 +2,7 @@
  * @description ファイル操作の共通ユーティリティ(バックアップ・CP932検証)
  */
 
-import * as fs from "node:fs";
+import { copyFile, removeFile } from "./cli";
 import { isValidCP932, readFileAsBuffer } from "./cp932";
 
 /**
@@ -12,7 +12,7 @@ import { isValidCP932, readFileAsBuffer } from "./cp932";
  */
 export function createBackup(filePath: string): string {
 	const backupPath = `${filePath}.bak`;
-	fs.copyFileSync(filePath, backupPath);
+	copyFile(filePath, backupPath);
 	console.log(`Backup created: ${backupPath}`);
 	return backupPath;
 }
@@ -23,8 +23,8 @@ export function createBackup(filePath: string): string {
  * @param backupPath - バックアップファイルのパス
  */
 export function restoreFromBackup(filePath: string, backupPath: string): void {
-	fs.copyFileSync(backupPath, filePath);
-	fs.unlinkSync(backupPath);
+	copyFile(backupPath, filePath);
+	removeFile(backupPath);
 }
 
 /**
@@ -32,7 +32,7 @@ export function restoreFromBackup(filePath: string, backupPath: string): void {
  * @param backupPath - 削除するバックアップファイルのパス
  */
 export function removeBackup(backupPath: string): void {
-	fs.unlinkSync(backupPath);
+	removeFile(backupPath);
 }
 
 /**
