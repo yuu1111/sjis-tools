@@ -12,7 +12,8 @@
 		"build": "rm -rf dist && bun build src/cli.ts --outdir dist --target node --format esm --sourcemap=external --external iconv-lite",
 		"typecheck": "tsc --noEmit",
 		"lint": "biome check .",
-		"format": "biome check --write --unsafe ."
+		"format": "biome check --write --unsafe .",
+		"test": "bun test"
 	},
 	"keywords": [
 		"sjis",
