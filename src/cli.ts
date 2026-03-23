@@ -53,7 +53,7 @@ function printUsage(): never {
 		([name, { description }]) => `  ${name.padEnd(17)}${description}`,
 	);
 	console.error(
-		`Usage: sjist <command> [args...]\n\nCommands:\n${lines.join("\n")}`,
+		["Usage: sjist <command> [args...]", "", "Commands:", ...lines].join("\n"),
 	);
 	process.exit(1);
 }
