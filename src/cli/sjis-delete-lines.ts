@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 /**
  * @description SJIS/CP932ファイルの行範囲削除CLI
  */
@@ -7,18 +6,22 @@ import {
 	parseArgs,
 	readFileWithCP932Warning,
 	requireFileExists,
-} from "../lib/cli.js";
-import { decodeCP932, writeBufferToFile } from "../lib/cp932.js";
-import { createBackup, validateCP932OrRestore } from "../lib/file-ops.js";
-import { linesToCP932Buffer, splitLines, validateLineRange } from "../lib/lines.js";
+} from "../lib/cli";
+import { decodeCP932, writeBufferToFile } from "../lib/cp932";
+import { createBackup, validateCP932OrRestore } from "../lib/file-ops";
+import {
+	linesToCP932Buffer,
+	splitLines,
+	validateLineRange,
+} from "../lib/lines";
 
 /**
  * @description CLIエントリーポイント
  */
-function main(): void {
+export function main(): void {
 	const args = parseArgs(
 		3,
-		"Usage: sjis-delete-lines <file> <start-line> <end-line>\n       Lines are 1-indexed, inclusive",
+		"Usage: sjist delete-lines <file> <start-line> <end-line>\n       Lines are 1-indexed, inclusive",
 	);
 
 	const filePath = requireFileExists(args[0]);
@@ -56,5 +59,3 @@ function main(): void {
 	);
 	console.log(`Backup kept at: ${backupPath}`);
 }
-
-main();

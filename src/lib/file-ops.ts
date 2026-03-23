@@ -3,7 +3,7 @@
  */
 
 import * as fs from "node:fs";
-import { isValidCP932, readFileAsBuffer } from "./cp932.js";
+import { isValidCP932, readFileAsBuffer } from "./cp932";
 
 /**
  * @description バックアップファイルを作成する

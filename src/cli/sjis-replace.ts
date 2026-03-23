@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 /**
  * @description SJIS/CP932ファイルのバイナリ置換CLI
  */
@@ -8,18 +7,18 @@ import {
 	parseArgs,
 	requireFileExists,
 	warnIfNotCP932,
-} from "../lib/cli.js";
+} from "../lib/cli";
 import {
 	readFileAsBuffer,
 	replaceInBuffer,
 	writeBufferToFile,
-} from "../lib/cp932.js";
+} from "../lib/cp932";
 import {
 	createBackup,
 	removeBackup,
 	restoreFromBackup,
 	validateCP932OrRestore,
-} from "../lib/file-ops.js";
+} from "../lib/file-ops";
 
 /**
  * @description 置換ペア
@@ -34,10 +33,10 @@ interface Replacement {
 /**
  * @description CLIエントリーポイント
  */
-function main(): void {
+export function main(): void {
 	const args = parseArgs(
 		3,
-		'Usage: sjis-replace <file> <search> <replace>\n       sjis-replace <file> --json \'[{"search":"a","replace":"b"}]\'',
+		'Usage: sjist replace <file> <search> <replace>\n       sjist replace <file> --json \'[{"search":"a","replace":"b"}]\'',
 	);
 
 	const filePath = requireFileExists(args[0]);
@@ -85,5 +84,3 @@ function main(): void {
 		`Successfully replaced ${totalReplaced} occurrence(s) in ${filePath}`,
 	);
 }
-
-main();

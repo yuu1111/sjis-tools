@@ -1,23 +1,22 @@
-#!/usr/bin/env node
 /**
  * @description SJIS/CP932ファイルのエンコーディング修復CLI(UTF-8からCP932へ変換)
  */
 
-import { exitWithError, parseArgs, requireFileExists } from "../lib/cli.js";
+import { exitWithError, parseArgs, requireFileExists } from "../lib/cli";
 import {
 	detectEncoding,
 	encodeCP932,
 	normalizeToCRLF,
 	readFileAsBuffer,
 	writeBufferToFile,
-} from "../lib/cp932.js";
-import { createBackup, validateCP932OrRestore } from "../lib/file-ops.js";
+} from "../lib/cp932";
+import { createBackup, validateCP932OrRestore } from "../lib/file-ops";
 
 /**
  * @description CLIエントリーポイント
  */
-function main(): void {
-	const args = parseArgs(1, "Usage: sjis-encoding-repair <file>");
+export function main(): void {
+	const args = parseArgs(1, "Usage: sjist encoding-repair <file>");
 	const filePath = requireFileExists(args[0]);
 
 	const buffer = readFileAsBuffer(filePath);
@@ -51,5 +50,3 @@ function main(): void {
 	console.log(`Successfully repaired: ${filePath}`);
 	console.log(`Backup kept at: ${backupPath}`);
 }
-
-main();

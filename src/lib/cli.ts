@@ -4,7 +4,7 @@
 
 import * as fs from "node:fs";
 import * as path from "node:path";
-import { isValidCP932, readFileAsBuffer } from "./cp932.js";
+import { isValidCP932, readFileAsBuffer } from "./cp932";
 
 /**
  * @description エラーメッセージを表示してプロセスを終了
@@ -32,7 +32,7 @@ export function parseArgs(
 ): [string, string, string, ...string[]];
 export function parseArgs(minArgs: number, usage: string): string[];
 export function parseArgs(minArgs: number, usage: string): string[] {
-	const args = process.argv.slice(2);
+	const args = process.argv.slice(3);
 	if (args.length < minArgs) {
 		exitWithError(usage);
 	}

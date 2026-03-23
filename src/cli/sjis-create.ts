@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 /**
  * @description SJIS/CP932ファイルの新規作成CLI
  */
@@ -6,8 +5,8 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
 import * as readline from "node:readline";
-import { parseArgs, requireFileNotExists } from "../lib/cli.js";
-import { createCP932File, isValidCP932, readFileAsBuffer } from "../lib/cp932.js";
+import { parseArgs, requireFileNotExists } from "../lib/cli";
+import { createCP932File, isValidCP932, readFileAsBuffer } from "../lib/cp932";
 
 /**
  * @description 標準入力から全行を読み込む
@@ -29,10 +28,10 @@ async function readStdin(): Promise<string> {
 /**
  * @description CLIエントリーポイント
  */
-async function main(): Promise<void> {
+export async function main(): Promise<void> {
 	const args = parseArgs(
 		2,
-		"Usage: sjis-create <output-file> <content>\n       sjis-create <output-file> --stdin",
+		"Usage: sjist create <output-file> <content>\n       sjist create <output-file> --stdin",
 	);
 
 	const outputPath = requireFileNotExists(
@@ -63,5 +62,3 @@ async function main(): Promise<void> {
 
 	console.log(`Created CP932 file: ${outputPath}`);
 }
-
-main().catch(console.error);

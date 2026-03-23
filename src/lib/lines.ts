@@ -2,8 +2,8 @@
  * @description 行操作ユーティリティ
  */
 
-import { exitWithError } from "./cli.js";
-import { decodeCP932, encodeCP932, readFileAsBuffer } from "./cp932.js";
+import { exitWithError } from "./cli";
+import { decodeCP932, encodeCP932, readFileAsBuffer } from "./cp932";
 
 /**
  * @description NaN値がないかチェックし、あればエラー終了

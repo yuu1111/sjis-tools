@@ -1,12 +1,11 @@
-#!/usr/bin/env node
 /**
  * @description SJIS/CP932ファイルのエンコーディング検証CLI
  */
 
 import * as fs from "node:fs";
 import * as path from "node:path";
-import { parseArgs } from "../lib/cli.js";
-import { decodeCP932, encodeCP932, readFileAsBuffer } from "../lib/cp932.js";
+import { parseArgs } from "../lib/cli";
+import { decodeCP932, encodeCP932, readFileAsBuffer } from "../lib/cp932";
 
 /**
  * @description エンコーディング検証結果
@@ -60,11 +59,8 @@ function checkFile(filePath: string): CheckResult {
 /**
  * @description CLIエントリーポイント
  */
-function main(): void {
-	const files = parseArgs(
-		1,
-		"Usage: sjis-encoding-check <file1> [file2] ...",
-	);
+export function main(): void {
+	const files = parseArgs(1, "Usage: sjist encoding-check <file1> [file2] ...");
 
 	const results = files.map(checkFile);
 	const failures = results.filter((r) => !r.valid);
@@ -79,5 +75,3 @@ function main(): void {
 
 	console.log(`All ${results.length} file(s) passed encoding check`);
 }
-
-main();

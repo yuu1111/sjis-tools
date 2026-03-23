@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 /**
  * @description SJIS/CP932ファイルから指定行範囲を抽出して新規ファイルを作成するCLI
  */
@@ -10,23 +9,23 @@ import {
 	parseArgs,
 	readFileWithCP932Warning,
 	requireFileExists,
-} from "../lib/cli.js";
-import { decodeCP932, isValidCP932, writeBufferToFile } from "../lib/cp932.js";
+} from "../lib/cli";
+import { decodeCP932, isValidCP932, writeBufferToFile } from "../lib/cp932";
 import {
 	type LineRange,
 	linesToCP932Buffer,
 	parseLineRanges,
 	splitLines,
 	validateLineRange,
-} from "../lib/lines.js";
+} from "../lib/lines";
 
 /**
  * @description CLIエントリーポイント
  */
-function main(): void {
+export function main(): void {
 	const args = parseArgs(
 		3,
-		'Usage: sjis-extract-lines <source> <output> <ranges>\n       ranges: comma-separated, e.g. "616-1811,3147-3915"',
+		'Usage: sjist extract-lines <source> <output> <ranges>\n       ranges: comma-separated, e.g. "616-1811,3147-3915"',
 	);
 
 	const sourcePath = requireFileExists(args[0]);
@@ -61,5 +60,3 @@ function main(): void {
 		`\nSuccessfully created ${outputPath} with ${extractedLines.length} lines`,
 	);
 }
-
-main();
