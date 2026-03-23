@@ -26,8 +26,8 @@ sjist replace <file> --json '[{"search":"old","replace":"new"}]'
 Create a new SJIS/CP932 file.
 
 ```bash
-sjist create <file> <content>
-sjist create <file> --stdin
+sjist create <output-file> <content>
+sjist create <output-file> --stdin
 ```
 
 ### `sjist delete-lines`
