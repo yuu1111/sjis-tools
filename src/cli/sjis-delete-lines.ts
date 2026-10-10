@@ -1,5 +1,5 @@
 /**
- * @description SJIS/CP932ファイルの行範囲削除CLI
+ * SJIS/CP932ファイルの行範囲削除CLI
  */
 
 import {
@@ -16,7 +16,7 @@ import {
 } from "../lib/lines";
 
 /**
- * @description CLIエントリーポイント
+ * CLIエントリーポイント
  */
 export function main(): void {
 	const args = parseArgs(

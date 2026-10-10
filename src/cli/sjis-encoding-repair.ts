@@ -1,5 +1,5 @@
 /**
- * @description SJIS/CP932ファイルのエンコーディング修復CLI(UTF-8からCP932へ変換)
+ * SJIS/CP932ファイルのエンコーディング修復CLI(UTF-8からCP932へ変換)
  */
 
 import { exitWithError, parseArgs, requireFileExists } from "../lib/cli";
@@ -13,7 +13,7 @@ import {
 import { createBackup, validateCP932OrRestore } from "../lib/file-ops";
 
 /**
- * @description CLIエントリーポイント
+ * CLIエントリーポイント
  */
 export function main(): void {
 	const args = parseArgs(1, "Usage: sjist encoding-repair <file>");

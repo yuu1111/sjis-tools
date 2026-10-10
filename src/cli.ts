@@ -1,5 +1,5 @@
 /**
- * @description sjist CLIエントリーポイント
+ * sjist CLIエントリーポイント
  */
 
 import { main as create } from "./cli/sjis-create";
@@ -10,13 +10,7 @@ import { main as extractLines } from "./cli/sjis-extract-lines";
 import { main as replace } from "./cli/sjis-replace";
 
 /**
- * @description サブコマンド定義
- * @property replace - SJIS/CP932ファイルのテキスト置換
- * @property create - SJIS/CP932ファイルの新規作成
- * @property delete-lines - SJIS/CP932ファイルの行範囲削除
- * @property extract-lines - SJIS/CP932ファイルから行範囲を抽出
- * @property encoding-check - SJIS/CP932エンコーディング検証
- * @property encoding-repair - エンコーディング修復(UTF-8 -> CP932)
+ * サブコマンド定義
  */
 const commands: Record<
 	string,
@@ -46,7 +40,7 @@ const commands: Record<
 };
 
 /**
- * @description 使用方法を表示
+ * 使用方法を表示
  */
 function printUsage(): never {
 	const lines = Object.entries(commands).map(

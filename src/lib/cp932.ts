@@ -1,22 +1,23 @@
 /**
- * @description CP932 (Shift-JIS) エンコーディング処理ライブラリ
+ * CP932 (Shift-JIS) エンコーディング処理ライブラリ
  */
 
 import * as fs from "node:fs";
 import * as iconv from "iconv-lite";
 
 /**
- * @description CP932エンコーディング識別子
+ * CP932エンコーディング識別子
  */
 const CP932 = "cp932";
 
 /**
- * @description エンコーディングの種類
+ * エンコーディングの種類
  */
 export type EncodingType = "utf8-bom" | "utf8" | "cp932" | "unknown";
 
 /**
- * @description ファイルをバイナリとして読み込む
+ * ファイルをバイナリとして読み込む
+ *
  * @param filePath - 対象ファイルパス
  * @returns ファイル内容のBuffer
  */
@@ -25,7 +26,8 @@ export function readFileAsBuffer(filePath: string): Buffer {
 }
 
 /**
- * @description バッファをファイルに書き込む
+ * バッファをファイルに書き込む
+ *
  * @param filePath - 出力先パス
  * @param buffer - 書き込むバッファ
  */
@@ -34,7 +36,8 @@ export function writeBufferToFile(filePath: string, buffer: Buffer): void {
 }
 
 /**
- * @description CP932バッファをUTF-8文字列にデコード
+ * CP932バッファをUTF-8文字列にデコード
+ *
  * @param buffer - CP932エンコードされたバッファ
  * @returns UTF-8文字列
  */
@@ -43,7 +46,8 @@ export function decodeCP932(buffer: Buffer): string {
 }
 
 /**
- * @description UTF-8文字列をCP932バッファにエンコード
+ * UTF-8文字列をCP932バッファにエンコード
+ *
  * @param text - UTF-8文字列
  * @returns CP932エンコードされたバッファ
  */
@@ -52,7 +56,8 @@ export function encodeCP932(text: string): Buffer {
 }
 
 /**
- * @description バイナリレベルでの文字列置換
+ * バイナリレベルでの文字列置換
+ *
  * @param buffer - 対象バッファ(CP932エンコード済み)
  * @param searchText - 検索文字列(UTF-8で指定)
  * @param replaceText - 置換文字列(UTF-8で指定)
@@ -86,7 +91,8 @@ export function replaceInBuffer(
 }
 
 /**
- * @description 改行コードをCRLFに正規化
+ * 改行コードをCRLFに正規化
+ *
  * @param buffer - 正規化対象バッファ
  * @returns CRLF改行に正規化されたバッファ
  */
@@ -104,7 +110,8 @@ export function normalizeToCRLF(buffer: Buffer): Buffer {
 }
 
 /**
- * @description バッファがCP932として妥当か検証
+ * バッファがCP932として妥当か検証
+ *
  * @param buffer - 検証対象バッファ
  * @returns CP932として妥当ならtrue
  */
@@ -119,10 +126,11 @@ export function isValidCP932(buffer: Buffer): boolean {
 }
 
 /**
- * @description UTF-8テキストからCP932ファイルを作成
+ * UTF-8テキストからCP932ファイルを作成
+ *
  * @param filePath - 出力先パス
  * @param content - UTF-8文字列
- * @param useCRLF - CRLF改行を使用するか @default true
+ * @param useCRLF - CRLF改行を使用するか (default: true)
  */
 export function createCP932File(
 	filePath: string,
@@ -134,7 +142,8 @@ export function createCP932File(
 }
 
 /**
- * @description バッファにUTF-8マルチバイトシーケンスが含まれるか判定
+ * バッファにUTF-8マルチバイトシーケンスが含まれるか判定
+ *
  * @param buffer - 検査対象バッファ
  */
 function hasUtf8Multibyte(buffer: Buffer): boolean {
@@ -162,7 +171,8 @@ function hasUtf8Multibyte(buffer: Buffer): boolean {
 }
 
 /**
- * @description バッファのエンコーディングを検出
+ * バッファのエンコーディングを検出
+ *
  * @param buffer - 検出対象バッファ
  * @returns 検出されたエンコーディング種別
  */

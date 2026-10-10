@@ -1,5 +1,5 @@
 /**
- * @description SJIS/CP932ファイルのバイナリ置換CLI
+ * SJIS/CP932ファイルのバイナリ置換CLI
  */
 
 import {
@@ -21,17 +21,22 @@ import {
 } from "../lib/file-ops";
 
 /**
- * @description 置換ペア
- * @property search - 検索文字列
- * @property replace - 置換文字列
+ * 置換ペア
  */
 interface Replacement {
+	/**
+	 * 検索文字列
+	 */
 	search: string;
+
+	/**
+	 * 置換文字列
+	 */
 	replace: string;
 }
 
 /**
- * @description CLIエントリーポイント
+ * CLIエントリーポイント
  */
 export function main(): void {
 	const args = parseArgs(

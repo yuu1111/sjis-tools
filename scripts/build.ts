@@ -1,5 +1,5 @@
 /**
- * @description esbuildでCLIをバンドルし、出力を2行(shebang + コード)に圧縮する
+ * esbuildでCLIをバンドルし、出力を2行(shebang + コード)に圧縮する
  */
 
 import { readFileSync, rmSync, writeFileSync } from "node:fs";
@@ -21,7 +21,8 @@ buildSync({
 });
 
 /**
- * @description テンプレートリテラル内の改行を\nに、それ以外の改行を除去する
+ * テンプレートリテラル内の改行をエスケープシーケンスに変換し、それ以外の改行を除去する
+ *
  * @param code - 処理対象のコード文字列
  * @returns 1行に圧縮されたコード
  */

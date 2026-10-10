@@ -15,6 +15,8 @@
 		"typecheck": "tsc --noEmit",
 		"lint": "biome check .",
 		"format": "biome check --write --unsafe .",
+		"knip": "knip",
+		"check:quality": "quality-check",
 		"pretest": "bun run build",
 		"test": "bun test"
 	},
@@ -40,10 +42,14 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.5.15",
-		"@yuu1111/biome-config": "^2.2.2",
 		"@types/bun": "^1.4.2",
+		"@types/node": "^26.6.5",
+		"@yuu1111/biome-config": "^2.2.2",
+		"@yuu1111/knip-config": "^2.1.0",
+		"@yuu1111/quality-check": "^5.3.1",
 		"@yuu1111/tsconfig": "^1.0.8",
 		"esbuild": "^0.28.2",
+		"knip": "^6.41.0",
 		"typescript": "^7.0.2"
 	}
 }

@@ -17,7 +17,8 @@ afterEach(() => {
 });
 
 /**
- * @description CLIコマンドを実行してstdout/stderr/exitCodeを返す
+ * CLIコマンドを実行してstdout/stderr/exitCodeを返す
+ *
  * @param args - コマンド引数
  */
 async function run(...args: string[]) {

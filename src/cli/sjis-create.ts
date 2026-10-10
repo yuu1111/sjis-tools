@@ -1,5 +1,5 @@
 /**
- * @description SJIS/CP932ファイルの新規作成CLI
+ * SJIS/CP932ファイルの新規作成CLI
  */
 
 import * as readline from "node:readline";
@@ -13,7 +13,8 @@ import {
 import { createCP932File, isValidCP932, readFileAsBuffer } from "../lib/cp932";
 
 /**
- * @description 標準入力から全行を読み込む
+ * 標準入力から全行を読み込む
+ *
  * @returns 読み込んだテキスト
  */
 async function readStdin(): Promise<string> {
@@ -30,7 +31,7 @@ async function readStdin(): Promise<string> {
 }
 
 /**
- * @description CLIエントリーポイント
+ * CLIエントリーポイント
  */
 export async function main(): Promise<void> {
 	const args = parseArgs(

@@ -1,12 +1,13 @@
 /**
- * @description ファイル操作の共通ユーティリティ(バックアップ・CP932検証)
+ * ファイル操作の共通ユーティリティ(バックアップ・CP932検証)
  */
 
 import { copyFile, removeFile } from "./cli";
 import { isValidCP932, readFileAsBuffer } from "./cp932";
 
 /**
- * @description バックアップファイルを作成する
+ * バックアップファイルを作成する
+ *
  * @param filePath - バックアップ元のファイルパス
  * @returns バックアップファイルのパス
  */
@@ -18,7 +19,8 @@ export function createBackup(filePath: string): string {
 }
 
 /**
- * @description バックアップからファイルを復元し、バックアップを削除する
+ * バックアップからファイルを復元し、バックアップを削除する
+ *
  * @param filePath - 復元先のファイルパス
  * @param backupPath - バックアップファイルのパス
  */
@@ -28,7 +30,8 @@ export function restoreFromBackup(filePath: string, backupPath: string): void {
 }
 
 /**
- * @description バックアップファイルを削除する
+ * バックアップファイルを削除する
+ *
  * @param backupPath - 削除するバックアップファイルのパス
  */
 export function removeBackup(backupPath: string): void {
@@ -36,17 +39,23 @@ export function removeBackup(backupPath: string): void {
 }
 
 /**
- * @description CP932検証オプション
- * @property keepOnSuccess - 検証成功時もバックアップを保持するか @default false
- * @property errorMessage - 検証失敗時のエラーメッセージ @optional
+ * CP932検証オプション
  */
 interface ValidateCP932Options {
+	/**
+	 * 検証成功時もバックアップを保持するか (default: false)
+	 */
 	keepOnSuccess?: boolean;
+
+	/**
+	 * 検証失敗時のエラーメッセージ
+	 */
 	errorMessage?: string;
 }
 
 /**
- * @description ファイルのCP932妥当性を検証し、失敗時はバックアップから復元する
+ * ファイルのCP932妥当性を検証し、失敗時はバックアップから復元する
+ *
  * @param filePath - 検証対象のファイルパス
  * @param backupPath - バックアップファイルのパス
  * @param options - 検証オプション

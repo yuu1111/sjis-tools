@@ -78,7 +78,9 @@ describe("parseLineRanges", () => {
 		const mockExit = spyOn(process, "exit").mockImplementation(() => {
 			throw new Error("process.exit");
 		});
-		const mockError = spyOn(console, "error").mockImplementation(() => {});
+		const mockError = spyOn(console, "error").mockImplementation(() => {
+			/* silence console output */
+		});
 
 		expect(() => parseLineRanges("abc-def")).toThrow("process.exit");
 
@@ -114,7 +116,9 @@ describe("validateLineRange", () => {
 		const mockExit = spyOn(process, "exit").mockImplementation(() => {
 			throw new Error("process.exit");
 		});
-		const mockError = spyOn(console, "error").mockImplementation(() => {});
+		const mockError = spyOn(console, "error").mockImplementation(() => {
+			/* silence console output */
+		});
 
 		expect(() => validateLineRange(0, 5, 10)).toThrow("process.exit");
 
@@ -126,7 +130,9 @@ describe("validateLineRange", () => {
 		const mockExit = spyOn(process, "exit").mockImplementation(() => {
 			throw new Error("process.exit");
 		});
-		const mockError = spyOn(console, "error").mockImplementation(() => {});
+		const mockError = spyOn(console, "error").mockImplementation(() => {
+			/* silence console output */
+		});
 
 		expect(() => validateLineRange(1, 11, 10)).toThrow("process.exit");
 
@@ -138,7 +144,9 @@ describe("validateLineRange", () => {
 		const mockExit = spyOn(process, "exit").mockImplementation(() => {
 			throw new Error("process.exit");
 		});
-		const mockError = spyOn(console, "error").mockImplementation(() => {});
+		const mockError = spyOn(console, "error").mockImplementation(() => {
+			/* silence console output */
+		});
 
 		expect(() => validateLineRange(5, 3, 10)).toThrow("process.exit");
 

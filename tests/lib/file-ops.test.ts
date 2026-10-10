@@ -95,7 +95,9 @@ describe("validateCP932OrRestore", () => {
 		const mockExit = spyOn(process, "exit").mockImplementation(() => {
 			throw new Error("process.exit");
 		});
-		const mockError = spyOn(console, "error").mockImplementation(() => {});
+		const mockError = spyOn(console, "error").mockImplementation(() => {
+			/* silence console output */
+		});
 
 		expect(() => validateCP932OrRestore(filePath, backupPath)).toThrow(
 			"process.exit",
@@ -117,7 +119,9 @@ describe("validateCP932OrRestore", () => {
 		const mockExit = spyOn(process, "exit").mockImplementation(() => {
 			throw new Error("process.exit");
 		});
-		const mockError = spyOn(console, "error").mockImplementation(() => {});
+		const mockError = spyOn(console, "error").mockImplementation(() => {
+			/* silence console output */
+		});
 
 		expect(() =>
 			validateCP932OrRestore(filePath, backupPath, {

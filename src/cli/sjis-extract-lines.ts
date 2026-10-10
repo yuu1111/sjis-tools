@@ -1,5 +1,5 @@
 /**
- * @description SJIS/CP932ファイルから指定行範囲を抽出して新規ファイルを作成するCLI
+ * SJIS/CP932ファイルから指定行範囲を抽出して新規ファイルを作成するCLI
  */
 
 import {
@@ -20,7 +20,7 @@ import {
 } from "../lib/lines";
 
 /**
- * @description CLIエントリーポイント
+ * CLIエントリーポイント
  */
 export function main(): void {
 	const args = parseArgs(

@@ -27,7 +27,9 @@ describe("exitWithError", () => {
 		const mockExit = spyOn(process, "exit").mockImplementation(() => {
 			throw new Error("process.exit");
 		});
-		const mockError = spyOn(console, "error").mockImplementation(() => {});
+		const mockError = spyOn(console, "error").mockImplementation(() => {
+			/* silence console output */
+		});
 
 		expect(() => exitWithError("test error")).toThrow("process.exit");
 		expect(mockError).toHaveBeenCalledWith("test error");
@@ -53,7 +55,9 @@ describe("parseArgs", () => {
 		const mockExit = spyOn(process, "exit").mockImplementation(() => {
 			throw new Error("process.exit");
 		});
-		const mockError = spyOn(console, "error").mockImplementation(() => {});
+		const mockError = spyOn(console, "error").mockImplementation(() => {
+			/* silence console output */
+		});
 
 		expect(() => parseArgs(2, "Usage: test")).toThrow("process.exit");
 		expect(mockError).toHaveBeenCalledWith("Usage: test");
@@ -76,7 +80,9 @@ describe("requireFileExists", () => {
 		const mockExit = spyOn(process, "exit").mockImplementation(() => {
 			throw new Error("process.exit");
 		});
-		const mockError = spyOn(console, "error").mockImplementation(() => {});
+		const mockError = spyOn(console, "error").mockImplementation(() => {
+			/* silence console output */
+		});
 
 		expect(() => requireFileExists("/nonexistent/file.txt")).toThrow(
 			"process.exit",
@@ -101,7 +107,9 @@ describe("requireFileNotExists", () => {
 		const mockExit = spyOn(process, "exit").mockImplementation(() => {
 			throw new Error("process.exit");
 		});
-		const mockError = spyOn(console, "error").mockImplementation(() => {});
+		const mockError = spyOn(console, "error").mockImplementation(() => {
+			/* silence console output */
+		});
 
 		expect(() => requireFileNotExists(filePath)).toThrow("process.exit");
 
@@ -116,7 +124,9 @@ describe("requireFileNotExists", () => {
 		const mockExit = spyOn(process, "exit").mockImplementation(() => {
 			throw new Error("process.exit");
 		});
-		const mockError = spyOn(console, "error").mockImplementation(() => {});
+		const mockError = spyOn(console, "error").mockImplementation(() => {
+			/* silence console output */
+		});
 
 		expect(() => requireFileNotExists(filePath, "custom msg")).toThrow(
 			"process.exit",
@@ -130,14 +140,18 @@ describe("requireFileNotExists", () => {
 
 describe("warnIfNotCP932", () => {
 	test("有効なCP932では警告しない", () => {
-		const mockWarn = spyOn(console, "warn").mockImplementation(() => {});
+		const mockWarn = spyOn(console, "warn").mockImplementation(() => {
+			/* silence console output */
+		});
 		warnIfNotCP932(encodeCP932("テスト"));
 		expect(mockWarn).not.toHaveBeenCalled();
 		mockWarn.mockRestore();
 	});
 
 	test("無効なCP932で警告を出す", () => {
-		const mockWarn = spyOn(console, "warn").mockImplementation(() => {});
+		const mockWarn = spyOn(console, "warn").mockImplementation(() => {
+			/* silence console output */
+		});
 		warnIfNotCP932(Buffer.from("テスト", "utf8"));
 		expect(mockWarn).toHaveBeenCalledWith(
 			"Warning: File may not be valid CP932",
@@ -152,7 +166,9 @@ describe("readFileWithCP932Warning", () => {
 		const data = encodeCP932("テスト");
 		fs.writeFileSync(filePath, data);
 
-		const mockWarn = spyOn(console, "warn").mockImplementation(() => {});
+		const mockWarn = spyOn(console, "warn").mockImplementation(() => {
+			/* silence console output */
+		});
 		const result = readFileWithCP932Warning(filePath);
 		expect(result.equals(data)).toBe(true);
 		expect(mockWarn).not.toHaveBeenCalled();
@@ -163,7 +179,9 @@ describe("readFileWithCP932Warning", () => {
 		const filePath = path.join(tmpDir, "utf8.txt");
 		fs.writeFileSync(filePath, Buffer.from("テスト", "utf8"));
 
-		const mockWarn = spyOn(console, "warn").mockImplementation(() => {});
+		const mockWarn = spyOn(console, "warn").mockImplementation(() => {
+			/* silence console output */
+		});
 		readFileWithCP932Warning(filePath);
 		expect(mockWarn).toHaveBeenCalled();
 		mockWarn.mockRestore();

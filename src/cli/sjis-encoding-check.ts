@@ -1,24 +1,33 @@
 /**
- * @description SJIS/CP932ファイルのエンコーディング検証CLI
+ * SJIS/CP932ファイルのエンコーディング検証CLI
  */
 
 import { parseArgs, resolvePath } from "../lib/cli";
 import { decodeCP932, encodeCP932, readFileAsBuffer } from "../lib/cp932";
 
 /**
- * @description エンコーディング検証結果
- * @property file - 検証対象ファイルパス
- * @property valid - 検証成功ならtrue
- * @property error - エラーメッセージ @optional
+ * エンコーディング検証結果
  */
 interface CheckResult {
+	/**
+	 * 検証対象ファイルパス
+	 */
 	file: string;
+
+	/**
+	 * 検証成功ならtrue
+	 */
 	valid: boolean;
+
+	/**
+	 * エラーメッセージ
+	 */
 	error?: string;
 }
 
 /**
- * @description 単一ファイルのエンコーディングを検証
+ * 単一ファイルのエンコーディングを検証
+ *
  * @param filePath - 検証対象ファイルパス
  * @returns 検証結果
  */
@@ -56,7 +65,7 @@ function checkFile(filePath: string): CheckResult {
 }
 
 /**
- * @description CLIエントリーポイント
+ * CLIエントリーポイント
  */
 export function main(): void {
 	const files = parseArgs(1, "Usage: sjist encoding-check <file1> [file2] ...");
