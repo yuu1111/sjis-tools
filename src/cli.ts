@@ -7,7 +7,9 @@ import { main as deleteLines } from "./cli/sjis-delete-lines";
 import { main as encodingCheck } from "./cli/sjis-encoding-check";
 import { main as encodingRepair } from "./cli/sjis-encoding-repair";
 import { main as extractLines } from "./cli/sjis-extract-lines";
+import { main as normalize } from "./cli/sjis-normalize";
 import { main as replace } from "./cli/sjis-replace";
+import { main as search } from "./cli/sjis-search";
 
 /**
  * サブコマンド定義
@@ -36,6 +38,14 @@ const commands: Record<
 	"encoding-repair": {
 		handler: encodingRepair,
 		description: "Repair encoding (UTF-8 -> CP932)",
+	},
+	search: {
+		handler: search,
+		description: "Search CP932/UTF-8 files by text or regex",
+	},
+	normalize: {
+		handler: normalize,
+		description: "Decode CP932 and write UTF-8 with optional normalization",
 	},
 };
 

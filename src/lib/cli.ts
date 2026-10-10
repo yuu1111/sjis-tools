@@ -16,6 +16,68 @@ export function exitWithError(message: string): never {
 	process.exit(1);
 }
 
+/**
+ * オプション解析の結果
+ */
+export interface ParsedOptions {
+	/**
+	 * 値を取るオプションのマップ (オプション名 -> 値)
+	 */
+	values: Record<string, string>;
+
+	/**
+	 * 指定されたフラグの集合
+	 */
+	flags: Set<string>;
+
+	/**
+	 * 位置引数
+	 */
+	positionals: string[];
+}
+
+/**
+ * オプションと位置引数を分離して解析する
+ *
+ * 未知のオプション(ハイフンで始まる引数)はエラー終了する。
+ *
+ * @param args - 解析対象の引数
+ * @param valueOptions - 値を取るオプション名の一覧
+ * @param flagOptions - フラグのオプション名の一覧
+ * @returns 解析結果
+ */
+export function parseArgsWithOptions(
+	args: string[],
+	valueOptions: string[],
+	flagOptions: string[],
+): ParsedOptions {
+	const values: Record<string, string> = {};
+	const flags = new Set<string>();
+	const positionals: string[] = [];
+
+	for (let i = 0; i < args.length; i++) {
+		const arg = args[i];
+		if (arg === undefined) {
+			continue;
+		}
+		if (valueOptions.includes(arg)) {
+			const value = args[++i];
+			if (value === undefined) {
+				exitWithError(`Missing value for ${arg}`);
+			}
+			values[arg] = value;
+		} else if (flagOptions.includes(arg)) {
+			flags.add(arg);
+		} else if (arg.startsWith("-") && arg !== "-") {
+			exitWithError(`Unknown option: ${arg}`);
+		} else {
+			positionals.push(arg);
+		}
+	}
+
+	return { values, flags, positionals };
+}
+
 export function parseArgs(minArgs: 1, usage: string): [string, ...string[]];
 export function parseArgs(
 	minArgs: 2,
