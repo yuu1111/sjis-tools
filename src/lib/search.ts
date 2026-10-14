@@ -69,8 +69,6 @@ export interface SearchMatch {
 /**
  * globパターンを正規表現に変換する
  *
- * `*` はパス区切り以外の任意文字、`**` は任意のパス、`?` は1文字にマッチする。
- *
  * @param pattern - globパターン
  * @returns 正規表現
  */
@@ -119,8 +117,6 @@ function listFiles(target: string): string[] {
 
 /**
  * ファイルを検索可能なテキストにデコードする
- *
- * バイナリと判定された場合はnullを返す。
  *
  * @param filePath - 対象ファイルパス
  * @returns デコード済みテキスト、またはnull

@@ -21,7 +21,7 @@ export function exitWithError(message: string): never {
  */
 export interface ParsedOptions {
 	/**
-	 * 値を取るオプションのマップ (オプション名 -> 値)
+	 * オプション名をキーとする値のマップ
 	 */
 	values: Record<string, string>;
 
@@ -38,8 +38,6 @@ export interface ParsedOptions {
 
 /**
  * オプションと位置引数を分離して解析する
- *
- * 未知のオプション(ハイフンで始まる引数)はエラー終了する。
  *
  * @param args - 解析対象の引数
  * @param valueOptions - 値を取るオプション名の一覧

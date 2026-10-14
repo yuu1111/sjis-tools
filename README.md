@@ -105,6 +105,7 @@ sjist normalize old.hsp --hsp --out old.norm.utf8.hsp
 sjist normalize new.hsp --hsp --out new.norm.utf8.hsp
 diff old.norm.utf8.hsp new.norm.utf8.hsp
 ```
+
 ## Safety
 
 - Automatic backup before destructive operations (`.bak` files)

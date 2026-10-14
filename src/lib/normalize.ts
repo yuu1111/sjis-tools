@@ -20,7 +20,7 @@ export interface NormalizeRule {
 /**
  * HSPデコンパイル出力のラベル・パラメータ番号を無害化するルール
  *
- * ラベル番号は新規追加の累積で位置によりずれるため、番号を潰して実質差分だけを残す。
+ * ラベル番号は新規追加の累積で位置によりずれるため、番号を潰して実質差分だけを残す
  */
 export const HSP_RULES: NormalizeRule[] = [
 	{ pattern: "\\*label_[0-9]+", replacement: "*label_N" },
